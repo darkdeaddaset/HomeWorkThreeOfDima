@@ -3,9 +3,9 @@ package nine.two;
 import java.time.LocalTime;
 
 public class Clock {
-    int hours;
-    int minutes;
-    LocalTime localTime;
+    private int hours;
+    private int minutes;
+    private LocalTime localTime;
 
     public Clock(){
         localTime = LocalTime.now();
@@ -38,13 +38,20 @@ public class Clock {
         int hour = localTime.getHour();
         int minute = localTime.getMinute();
 
-        if (hour >= hours && minute >= minutes){
+        if (hour >= hours && minute >= minutes || hour > hours){
             return  hour + ":" + minute + " Alarm!";
-        }else if (hour >= hours && minute < minutes){
-            return  hour + ":" + minute + " Alarm!";
-        }
-        else {
+        } else {
             return "Not Alarm!";
         }
     }
+
+    public int getSetHours(){
+        return hours;
+    }
+
+    public int getSetMinutes(){
+        return minutes;
+    }
+
+    public LocalTime getLocalTime(){ return localTime;}
 }

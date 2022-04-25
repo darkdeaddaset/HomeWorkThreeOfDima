@@ -15,19 +15,18 @@ public class WorldClock extends Clock{
 
     @Override
     public String getAlarm(){
-        if (addHours < 0){
-            addHours = Math.abs(addHours);
-        }
+        int hour = getLocalTime().getHour() + addHours;
+        int minute = getLocalTime().getMinute();
 
-        int hour = super.localTime.getHour() - addHours;
-        int minute = super.localTime.getMinute();
+        int hours = getSetHours();
+        int minutes = getSetMinutes();
 
-        if (hour >= super.hours && minute >= minutes){
+        System.out.println(hours);
+        System.out.println(minutes);
+
+        if (hour >= hours && minute >= minutes || hour > hours){
             return  hour + ":" + minute + " Alarm!";
-        }else if (hour >= hours && minute < minutes){
-            return  hour + ":" + minute + " Alarm!";
-        }
-        else {
+        } else {
             return "Not Alarm!";
         }
     }
