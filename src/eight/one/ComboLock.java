@@ -7,6 +7,7 @@ public class ComboLock {
     private final int secret2;
     private final int secret3;
     private int tik;
+    private int step;
     private boolean status = false;
 
     public ComboLock(int secret1,
@@ -19,6 +20,7 @@ public class ComboLock {
 
     public void reset(){
         tik = 0;
+        step = 0;
     }
 
     public void turnLeft(int ticks){
@@ -27,8 +29,10 @@ public class ComboLock {
         if (tik < MIN) {
             tik += MAX;
         }
-        if (status == true && tik == secret2){
+
+        if (status && tik == secret2){
             status = false;
+            step++;
         }else {
             status = true;
         }
@@ -41,21 +45,18 @@ public class ComboLock {
             tik -= MAX;
         }
 
-        if (status == false && tik == secret1){
-            status = true;
-        } else if (status = false && tik == secret3)
-            status = true;
-        else {
-            status = false;
+        if (step == 0){
+            status = checkTurnRight(secret1);
+            step++;
+        } else {
+            status = checkTurnRight(secret3);
         }
     }
-
+    
+    private boolean checkTurnRight(int secret){
+        return !status && tik == secret;
+    }
     public boolean open(){
-        if (status == true && tik == secret3){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return status && tik == secret3;
     }
 }
