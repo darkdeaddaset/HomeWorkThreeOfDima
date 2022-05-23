@@ -1,4 +1,4 @@
-# HomeWorkThreeOfDima(Принято)
+# HomeWorkThreeOfDima (Принято)
 
 1) Работа с ссылочными типами.
 2) Консольные шахматы.
